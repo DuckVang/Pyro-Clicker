@@ -1,12 +1,14 @@
 <script>
 import HelloWorld from './components/HelloWorld.vue'
 import FireCanvas from './components/Fire-Canvas.vue'
-import Button from './components/Button.vue'
-
+import Clicker from './components/Clicker-Button.vue'
+import InfoBox from './components/Info-Box.vue'
 export default {
   components: {
     HelloWorld,
-    FireCanvas
+    FireCanvas,
+    Clicker,
+    InfoBox
   }
 }
 </script>
@@ -14,8 +16,8 @@ export default {
 <template>
   <div class="wrapper">
     <div class="left panel">
-      pog
-      <Button></Button>
+      <InfoBox></InfoBox>
+      <Clicker></Clicker>
     </div>
     <FireCanvas></FireCanvas>
     <div class="right panel">right</div>
