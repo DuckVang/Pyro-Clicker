@@ -20,8 +20,10 @@ export default {
 </template>
 
 <style scoped lang="scss">
+@import "node_modules/pixel-borders/src/styles/pixel-borders.scss";
+
 .upgrade {
-    
+
     margin-top: 10px;
     padding: 14px;
     display: flex;
@@ -39,7 +41,12 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px dashed black;
+    @include pixel-borders ($corner-size: 2,
+        $border-size: 2px,
+        $border-color: darken(grey
+        , 20),
+        $border-inset-color: false);
+
 }
 
 .text {
