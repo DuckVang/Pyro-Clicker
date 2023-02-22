@@ -1,11 +1,11 @@
 <script>
 
 export default {
-    data() {
-        return {
-            date: new Date().toString()
-        }
-    },
+  data () {
+    return {
+      date: new Date().toString()
+    }
+  }
 }
 </script>
 
@@ -20,7 +20,6 @@ export default {
 </template>
 
 <style lang="scss">
-
 
 .Info-Box {
     width: 100%;

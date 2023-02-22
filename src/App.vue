@@ -1,14 +1,16 @@
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
 import FireCanvas from './components/Fire-Canvas.vue'
 import Clicker from './components/Clicker-Button.vue'
 import InfoBox from './components/Info-Box.vue'
+import StoreUpgrade from './components/Store-Upgrade/Store-Upgrade.vue'
 export default {
   components: {
-    HelloWorld,
+
     FireCanvas,
     Clicker,
-    InfoBox
+    InfoBox,
+    StoreUpgrade
   }
 }
 </script>
@@ -20,7 +22,10 @@ export default {
       <Clicker></Clicker>
     </div>
     <FireCanvas></FireCanvas>
-    <div class="right panel">right</div>
+    <div class="right panel">right
+
+      <StoreUpgrade></StoreUpgrade>
+    </div>
   </div>
 </template>
 
@@ -39,7 +44,7 @@ export default {
 .panel {
   display: flex;
   flex-direction: column;
-  background-color: blue;
+  background-color: $color1.darken(1);
   height: 100vh;
 
 }
