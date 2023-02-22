@@ -1,30 +1,36 @@
-<script setup lang="ts">
+<script>
 import HelloWorld from './components/HelloWorld.vue'
+import FireCanvas from './components/Fire-Canvas.vue'
+
+export default {
+  components: {
+    HelloWorld,
+    FireCanvas
+  }
+}
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div class="wrapper">
+    <div class="left panel">left</div>
+    <FireCanvas></FireCanvas>
+    <div class="right panel">right</div>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.wrapper *{
+  flex: 1;
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+.panel {
+  background-color: blue;
+  height: 100vh;
+  
 }
 </style>
