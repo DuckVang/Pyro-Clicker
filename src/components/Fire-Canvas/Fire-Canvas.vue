@@ -2,7 +2,7 @@
 
 import { Application, Graphics } from "pixi.js";
 
-let pixiApp = new Application()
+let pixiApp = new Application({ autoResize: true })
 
 
 pixiApp.stage.addChild(new Graphics().beginFill(0x00E200).drawRect(0, 0, 100, 100).endFill())
@@ -28,7 +28,7 @@ export default {
             const parent = this.pixiApp.view.parentNode;
             console.log(parent)
             console.log(parent.clientWidth, parent.clientHeight)
-            pixiApp.renderer.resize(parent.clientWidth, parent.clientHeight);
+            pixiApp.renderer.resize(parent.clientWidth, window.innerHeight);
 
         }
     }
@@ -45,12 +45,18 @@ export default {
 </template>
 
 <style lang="scss">
-#Pixi-App{
-
+#Pixi-App {
     flex: 2;
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+    
+
     background-color: black;
-    &>canvas{
-       
+
+    &>canvas {
+        margin: 0;
+        overflow: hidden;
     }
 }
 </style>

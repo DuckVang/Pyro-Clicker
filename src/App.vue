@@ -40,10 +40,6 @@ export default {
     flex: 1;
   }
 
-  #Pixi-App {
-    flex: 2;
-  }
-
   .panel {
     display: flex;
     padding: 10px;
