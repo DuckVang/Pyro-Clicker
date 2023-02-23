@@ -3,19 +3,15 @@
 export default {
   data () {
     return {
-      date: new Date().toString()
+      
     }
   }
 }
 </script>
 
 <template>
-    <div class="Info-Box">
-        <h1>Fire clicker</h1>
-
-        <h4 class="date">{{ date }}</h4>
-
-        <h3 class="unit">XXX</h3>
+    <div class="Text-Box">
+ 
     </div>
 </template>
 

@@ -22,30 +22,42 @@ export default {
       <Clicker></Clicker>
     </div>
     <FireCanvas></FireCanvas>
-    <div class="right panel">right
-
+    <div class="right panel">
       <StoreUpgrade></StoreUpgrade>
     </div>
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .wrapper {
   display: flex;
   flex-direction: row;
   width: 100vw;
 
-}
+  &>* {
+    flex: 1;
+  }
 
-.wrapper * {
-  flex: 1;
-}
+  canvas {
+    flex: 2;
+  }
 
-.panel {
-  display: flex;
-  flex-direction: column;
-  background-color: $color1.darken(1);
-  height: 100vh;
+  .panel {
+    display: flex;
+    padding: 10px;
+    border: 3px double darkslategrey;
+    flex-direction: column;
+    background-color: darken($color1, 10);
+    height: 100vh;
+
+    &::before{
+      z-index: -1;
+      top: 2px;
+      position: absolute;
+      border: 7px solid black;
+    }
+
+  }
 
 }
 </style>
