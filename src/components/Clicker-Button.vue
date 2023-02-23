@@ -6,14 +6,34 @@ export default {
 </script>
 <template>
     <button>
-        <p>Click</p>
+        <div class="container">
+            pog
+        </div>
     </button>
 </template>
-<style scoped>
+<style lang="scss" scoped>
 button {
+    font-family: "VT323";
+    aspect-ratio: 1/1;
     width: 100%;
-    max-height: 30%;
-    background-color: red;
-    padding: 5px;
+    border: 0;
+    background-color: grey;
+    
+    padding: 10px;
+
+    &:hover {
+        background-color: black;
+    }
+
+
+
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        background-color: $color1;
+        border: 5px dashed black;
+    }
 }
 </style>
