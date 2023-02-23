@@ -1,9 +1,10 @@
 <script>
 
-import FireCanvas from './components/Fire-Canvas.vue'
+import FireCanvas from './components/Fire-Canvas/Fire-Canvas.vue'
 import Clicker from './components/Clicker-Button.vue'
 import InfoBox from './components/Info-Box.vue'
 import StoreUpgrade from './components/Store-Upgrade/Store-Upgrade.vue'
+
 export default {
   components: {
 
@@ -13,6 +14,7 @@ export default {
     StoreUpgrade
   }
 }
+
 </script>
 
 <template>
@@ -38,7 +40,7 @@ export default {
     flex: 1;
   }
 
-  canvas {
+  #Pixi-App {
     flex: 2;
   }
 
