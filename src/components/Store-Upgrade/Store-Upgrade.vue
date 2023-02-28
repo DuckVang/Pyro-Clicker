@@ -1,10 +1,10 @@
-<script>
+<script setup>
 import Upgrade from './Upgrade.vue'
-export default {
-    components: {
-        Upgrade
-    }
-}
+// export default {
+//     components: {
+//         Upgrade
+//     }
+// }
 </script>
 <template>
     <div class="store-upgrade">
