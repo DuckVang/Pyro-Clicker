@@ -20,9 +20,11 @@ button {
     background-color: rgba(174, 155, 113, 0.857);
 
     padding: 10px;
+    background-color: black;
+
 
     &:hover {
-        background-color: black;
+        background-color: red($color: #000000);
     }
 
     &:active {
@@ -46,8 +48,11 @@ button {
         align-items: center;
         justify-content: center;
         height: 100%;
-        background-color: $color1;
+        background-color: #988a6a;
         border: 5px dashed black;
+
+        background-color: #988a6a;
+        background-image: url("https://www.transparenttextures.com/patterns/3px-tile.png");
 
         img {
             filter: drop-shadow(0 0 0.75rem black);
