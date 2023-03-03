@@ -49,7 +49,7 @@ export default {
     flex-direction: column;
     background-color: darken($color1, 10);
     height: 100vh;
-    flex: 1.5;
+    flex: 0.7;
 
     &::before {
       z-index: -1;

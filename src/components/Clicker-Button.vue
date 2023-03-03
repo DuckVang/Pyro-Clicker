@@ -5,22 +5,34 @@ export default {
 
 </script>
 <template>
-    <button>
-        <div class="container">
-            <img src="../assets/log.png" alt="">
-        </div>
-    </button>
+    <div class="clicker">
+
+
+
+        <button>
+            <div class="container">
+                <img src="../assets/log.png" alt="">
+            </div>
+        </button>
+    </div>
 </template>
 <style lang="scss" scoped>
+.clicker{
+
+    background-color: black;
+   
+}
 button {
     font-family: "VT323";
     aspect-ratio: 1/1;
+   
     max-width: 100%;
     border: 0;
     background-color: rgba(174, 155, 113, 0.857);
 
     padding: 10px;
-    background-color: black;
+    
+    
 
 
     &:hover {
@@ -28,15 +40,16 @@ button {
     }
 
     &:active {
-        margin: 10px;
+      
 
         .container {
 
+
+            
             img {
                 transition: 0.3s;
                 rotate: (360deg);
-                width: 1px;
-                height: 1px;
+               scale: 0;
 
             }
         }
@@ -50,6 +63,7 @@ button {
         height: 100%;
         background-color: #988a6a;
         border: 5px dashed black;
+        padding: 20px;
 
         background-color: #988a6a;
         background-image: url("https://www.transparenttextures.com/patterns/3px-tile.png");
