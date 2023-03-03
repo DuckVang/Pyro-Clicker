@@ -40,6 +40,8 @@ export default {
     flex: 1;
   }
 
+  
+
   .panel {
     display: flex;
     padding: 10px;
@@ -47,8 +49,9 @@ export default {
     flex-direction: column;
     background-color: darken($color1, 10);
     height: 100vh;
+    flex: 1.5;
 
-    &::before{
+    &::before {
       z-index: -1;
       top: 2px;
       position: absolute;
