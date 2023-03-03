@@ -31,7 +31,7 @@ export default {
     }
 
     h1 {
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid $border1;
     }
 
     h2 {}

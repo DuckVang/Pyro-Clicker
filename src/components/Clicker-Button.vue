@@ -28,7 +28,7 @@ button {
    
     max-width: 100%;
     border: 0;
-    background-color: rgba(174, 155, 113, 0.857);
+    background-color: $color1;
 
     padding: 10px;
     
@@ -47,9 +47,9 @@ button {
 
             
             img {
-                transition: 0.3s;
-                rotate: (360deg);
-               scale: 0;
+                transition: 0.1s;
+                rotate: (10deg);
+               scale: 1.4;
 
             }
         }
@@ -62,14 +62,14 @@ button {
         justify-content: center;
         height: 100%;
         background-color: #988a6a;
-        border: 5px dashed black;
+        border: 5px dashed $border1;
         padding: 20px;
 
-        background-color: #988a6a;
+        background-color: $color1;
         background-image: url("https://www.transparenttextures.com/patterns/3px-tile.png");
 
         img {
-            filter: drop-shadow(0 0 0.75rem black);
+            filter: grayscale(100%);
             width: 100%;
             height: 100%;
             object-fit: cover;
