@@ -45,7 +45,7 @@ export default {
   .panel {
     display: flex;
     padding: 10px;
-    border: 3px double darkslategrey;
+    border: 3px double $border1;
     flex-direction: column;
     background-color: darken($color1, 10);
     height: 100vh;
@@ -55,7 +55,7 @@ export default {
       z-index: -1;
       top: 2px;
       position: absolute;
-      border: 7px solid black;
+      border: 7px solid $border1;
     }
 
   }

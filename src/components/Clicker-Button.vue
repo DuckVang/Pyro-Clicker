@@ -52,11 +52,16 @@ button {
                     0% {
                         translate: 0, 40px;
                     }
-
-                    100% {
+                    50% {
                         translate: 100% -40px;
                         transition: 0.2s;
                         rotate: (10deg);
+                        scale: 0.5;
+                      
+                    }
+
+                    100% {
+                        position: 0px 0px;
                         scale: 0.5;
                     }
 
