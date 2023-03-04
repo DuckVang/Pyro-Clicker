@@ -17,44 +17,55 @@ export default {
     </div>
 </template>
 <style lang="scss" scoped>
-.clicker{
+.clicker {
 
     background-color: black;
-   
+
 }
+
 button {
     font-family: "VT323";
     aspect-ratio: 1/1;
-   
     max-width: 100%;
     border: 0;
     background-color: $color1;
-
     padding: 10px;
-    
-    
-
 
     &:hover {
         background-color: red($color: #000000);
     }
 
     &:active {
-      
+
 
         .container {
 
 
-            
+
             img {
-                transition: 0.1s;
-                rotate: (10deg);
-               scale: 1.4;
+                animation-name: click;
+                animation-direction: normal;
+                animation-duration: 10s;
+
+
+                @keyframes click {
+                    0% {
+                        translate: 0, 40px;
+                    }
+
+                    100% {
+                        translate: 100% -40px;
+                        transition: 0.2s;
+                        rotate: (10deg);
+                        scale: 0.5;
+                    }
+
+                }
 
             }
         }
-    }
 
+    }
 
     .container {
         display: flex;
@@ -75,5 +86,6 @@ button {
             object-fit: cover;
         }
     }
+
 }
 </style>
