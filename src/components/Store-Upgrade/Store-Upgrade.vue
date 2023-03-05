@@ -33,7 +33,7 @@ import Upgrade from './Upgrade.vue'
     .title {
         @include pixel-borders ($corner-size: 2,
             $border-size: 3px,
-            $border-color: grey,
+            $border-color: $border1,
             $border-inset-color: false);
 
         margin: 10px;

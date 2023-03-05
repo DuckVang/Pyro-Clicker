@@ -31,7 +31,7 @@ export default {
     width: 100%;
     height: 8vh;
     background-color: darken($color1, 10);
-    border-radius: 1px solid black;
+    border: 1px solid $border1;
     align-items: center;
 }
 
@@ -43,7 +43,7 @@ export default {
     justify-content: center;
     @include pixel-borders ($corner-size: 2,
         $border-size: 2px,
-        $border-color: darken(grey
+        $border-color: darken($border1
         , 20),
         $border-inset-color: false);
 
