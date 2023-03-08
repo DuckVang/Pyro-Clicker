@@ -1,20 +1,18 @@
 <script>
-
-import FireCanvas from './components/Fire-Canvas/Fire-Canvas.vue'
-import Clicker from './components/Clicker-Button.vue'
-import InfoBox from './components/Info-Box.vue'
-import StoreUpgrade from './components/Store-Upgrade/Store-Upgrade.vue'
-
+import FireCanvas from "./components/Fire-Canvas/Fire-Canvas.vue";
+import Clicker from "./components/Clicker-Button.vue";
+import InfoBox from "./components/Info-Box.vue";
+import StoreUpgrade from "./components/Store-Upgrade/Store-Upgrade.vue";
+import TextOutput from "./components/TextOutput.vue";
 export default {
   components: {
-
     FireCanvas,
     Clicker,
     InfoBox,
-    StoreUpgrade
-  }
-}
-
+    StoreUpgrade,
+    TextOutput,
+  },
+};
 </script>
 
 <template>
@@ -22,6 +20,7 @@ export default {
     <div class="left panel">
       <InfoBox></InfoBox>
       <Clicker></Clicker>
+      <TextOutput></TextOutput>
     </div>
     <FireCanvas></FireCanvas>
     <div class="right panel">
@@ -36,11 +35,9 @@ export default {
   flex-direction: row;
   width: 100vw;
 
-  &>* {
+  & > * {
     flex: 1;
   }
-
-  
 
   .panel {
     display: flex;
@@ -57,8 +54,6 @@ export default {
       position: absolute;
       border: 7px solid $border1;
     }
-
   }
-
 }
 </style>
