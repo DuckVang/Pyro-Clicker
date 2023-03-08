@@ -1,7 +1,7 @@
 <script setup>
 import { reactive } from "vue";
 const data = reactive({
-  messages: ["Hello", "World", "This", "Is", "A", "Test"],
+  messages: ["Hello pog", "World is shit", "This is isnt daijobu", "Is there something meaningfull", "A catgirl", "Test is a test"],
 });
 </script>
 

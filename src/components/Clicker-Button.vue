@@ -29,7 +29,7 @@ button {
     max-width: 100%;
     border: 0;
     background-color: $color1;
-    padding: 10px;
+
 
     &:hover {
         background-color: red($color: #000000);
@@ -46,6 +46,7 @@ button {
                 animation-name: click;
                 animation-direction: normal;
                 animation-duration: 10s;
+  
 
 
                 @keyframes click {
@@ -78,8 +79,8 @@ button {
         justify-content: center;
         height: 100%;
         background-color: #988a6a;
-        border: 5px dashed $border1;
-        padding: 20px;
+        border: 1px dashed $border1;
+    
 
         background-color: $color1;
         background-image: url("https://www.transparenttextures.com/patterns/3px-tile.png");
