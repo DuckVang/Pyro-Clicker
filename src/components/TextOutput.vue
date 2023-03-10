@@ -6,8 +6,9 @@ const data = reactive({
 </script>
 
 <template>
-  <h1>Text Output</h1>
+
   <div class="Text-Box">
+  <h1>Text Output</h1>
     <p v-for="(item, index) in data.messages" :key="index">
       {{ item }}
     </p>

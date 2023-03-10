@@ -4,6 +4,7 @@ import Clicker from "./components/Clicker-Button.vue";
 import InfoBox from "./components/Info-Box.vue";
 import StoreUpgrade from "./components/Store-Upgrade/Store-Upgrade.vue";
 import TextOutput from "./components/TextOutput.vue";
+import SnowEffect from "./components/Snow-Effect/SnowEffect.vue";
 export default {
   components: {
     FireCanvas,
@@ -11,12 +12,14 @@ export default {
     InfoBox,
     StoreUpgrade,
     TextOutput,
+    SnowEffect,
   },
 };
 </script>
 
 <template>
   <div class="wrapper">
+    <SnowEffect></SnowEffect>
     <div class="left panel">
       <InfoBox></InfoBox>
       <Clicker></Clicker>

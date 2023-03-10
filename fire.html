@@ -461,21 +461,7 @@
     const widhth = 300
     const height = 700
 
-    let buffer1 = 
-    function fire(rows) {
-        buffer1.loadPixels();
-        for (let x = 0; x < w; x++) {
-            for (let j = 0; j < rows; j++) {
-                let y = h - (j + 1);
-                let index = (x + y * w) * 4;
-                buffer1.pixels[index] = 255;
-                buffer1.pixels[index + 1] = 255;
-                buffer1.pixels[index + 2] = 255;
-                buffer1.pixels[index + 3] = 255;
-            }
-        }
-        buffer1.updatePixels();
-    }
+   
 
 </script>
 
