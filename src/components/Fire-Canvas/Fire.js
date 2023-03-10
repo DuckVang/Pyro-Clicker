@@ -1,23 +1,92 @@
+
 class Fire {
+    p(n) {
+        return {
+            key: `l${n}`,
+            max: 100,
+            min: 0,
+        };
+    }
 
+    c(n) {
+        return {
+            key: `c${n}`,
 
+        };
+    }
+    properties = [
+        c(1),
+        c(2),
+        c(3),
+        c(4),
+        c(5),
+        p(1),
+        p(2),
+        p(3),
+        p(4),
+        p(5),
+    ]
 
+    label = "Fire using marching squares"
+    x = 200
+    y = 0
+    height = 81
+    zindex = 1
+    width = 210
+    blocksize = 6
+    burnfactor = 131
+    fuel = 15
+    c1 = "#fffEFF"
+    c2 = "#E2F2FF"
+    c3 = "#e220FF"
+    c4 = "#9b11FF"
+    c5 = "#0000FF"
+    l1 = 100
+    l2 = 64
+    l3 = 35
+    l4 = 22
+    l5 = 11
+    runsimulation = 1
+    useintensitymodulation = 0
+    dopaint =
+        optimize_onlysquares = false
+    optimize_rle_squares = true
+    optimize_removedoubles = false
+    optimize_batchfill = true
+    debug_drawmesh = false
 
+    initialize = function () {
+        this.initValues();
+    }
 
-     drawRect = function (ctx, x, y, width, height = 1, dontFill) {
-        let xoffset;
-        let yoffset;
-        let b = this.blocksize;
-        xoffset = b * x;
-        yoffset = b * y;
-        if (!dontFill) {
-            ctx.beginPath();
+    initValues = function () {
+        this.grid = [];
+        this.burnoffset = 0;
+        this.mytick = 60;
+        this._boost = 0;
+    }
+    //wtf is offset
+    updateBurnOffset = function () {
+        this.mytick = ((this.mytick || 0) + 0.4) % 100;
+        if (this.mytick > 85) {
+            this.burnoffset += Math.random() * 0.1;
         }
-        ctx.rect(xoffset, yoffset, width * b, height * b);
-        if (!dontFill) {
-            ctx.fill();
+        if (this.mytick < 50) {
+            this.burnoffset *= 0.95;
         }
     }
+
+    report = function () {
+        const ret = _c.fmt(
+            "Fire {}, {}",
+            Math.round(this.maxIntensity * 100),
+            Math.round(this.minIntensity * 100)
+        );
+        this.maxIntensity = undefined;
+        this.minIntensity = undefined;
+        return ret;
+    }
+
     paint = function (ctx) {
         let i;
         let c;
@@ -115,7 +184,28 @@ class Fire {
         ctx.translate(-this.x, -this.y);
     }
 
-     tick = function (ctx, diff) {
+    drawRect = function (ctx, x, y, width, height = 1, dontFill) {
+        let xoffset;
+        let yoffset;
+        let b = this.blocksize;
+        xoffset = b * x;
+        yoffset = b * y;
+        if (!dontFill) {
+            ctx.beginPath();
+        }
+        ctx.rect(xoffset, yoffset, width * b, height * b);
+        if (!dontFill) {
+            ctx.fill();
+        }
+    }
+
+
+    boost = function () {
+        this._boost += 10;
+    }
+
+
+    tick = function (ctx, diff) {
         var x;
         var y;
         var lower;
@@ -181,7 +271,7 @@ class Fire {
         }
     }
 
-     createGrid = function (height) {
+    createGrid = function (height) {
         let grid = [];
         let i;
 
@@ -198,5 +288,11 @@ class Fire {
         }
         return grid;
     }
+
+    onPropertyUpdate = function (name, value) {
+        this[name] = value;
+        if (name === "height" || name === "width") {
+            this.grid = [];
+        }
+    }
 }
-export default Fire

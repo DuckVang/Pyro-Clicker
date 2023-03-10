@@ -18,146 +18,93 @@
 <script>
 
 
-    "use strict";
-    function p(n) {
-        return {
-            key: `l${n}`,
-            max: 100,
-            min: 0,
-        };
-    }
 
-    function c(n) {
-        return {
-            key: `c${n}`,
-            type: "color",
-        };
-    }
 
-    /**
-     * Fire simulation
-     * Pretty CPU intense
-     */
-    CB.Class("Firems", {
-        properties: [
-            {
-                key: "optimize_onlysquares",
-                label: "Only squares",
-                type: "boolean",
-            },
-            {
-                key: "optimize_rle_squares",
-                label: "Grouped square paint",
-                type: "boolean",
-            },
-            {
-                key: "optimize_removedoubles",
-                label: "Remove doubles",
-                type: "boolean",
-            },
-            {
-                key: "optimize_batchfill",
-                label: "Batch fill",
-                type: "boolean",
-            },
-            {
-                key: "debug_drawmesh",
-                label: "Show grid",
-                type: "boolean",
-            },
-            {
-                key: "useintensitymodulation",
-                label: "Use intensity modulation",
-                type: "boolean",
-            },
-            "x",
-            "y",
-            "zindex",
-            "width",
-            "height",
-            "blocksize",
-            {
-                key: "runsimulation",
-                label: "Run fire simulation",
-                type: "boolean",
-            },
-            {
-                key: "dopaint",
-                label: "Draw fire",
-                type: "boolean",
-            },
-            {
-                key: "burnfactor",
-                max: 140,
-                min: 100,
-            },
-            {
-                key: "fuel",
-                max: 350,
-                min: 50,
-            },
-            c(1),
-            c(2),
-            c(3),
-            c(4),
-            c(5),
-            p(1),
-            p(2),
-            p(3),
-            p(4),
-            p(5),
-        ],
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext("2d");
+    const maxRandomness = 3000;
+    const widhth = 300
+    const height = 700
 
-        label: "Fire using marching squares",
-        x: 200,
-        y: 0,
-        height: 81,
-        zindex: 1,
-        width: 21,
-        blocksize: 6,
-        burnfactor: 129,
-        fuel: 150,
-        c1: "#fffEFF",
-        c2: "#E2F2FF",
-        c3: "#e220FF",
-        c4: "#9b11FF",
-        c5: "#0000FF",
-        l1: 84,
-        l2: 64,
-        l3: 35,
-        l4: 22,
-        l5: 11,
-        runsimulation: 1,
-        useintensitymodulation: 0,
-        dopaint: 1,
-        optimize_onlysquares: false,
-        optimize_rle_squares: true,
-        optimize_removedoubles: false,
-        optimize_batchfill: true,
-        debug_drawmesh: false,
 
-        initialize: function () {
+    class Fire {
+        p = function (n) {
+            return {
+                key: `l${n}`,
+                max: 100,
+                min: 0,
+            };
+        }
+
+        c = function (n) {
+            return {
+                key: `c${n}`,
+
+            };
+        }
+        properties = [
+            this.c(1),
+            this.c(2),
+            this.c(3),
+            this.c(4),
+            this.c(5),
+            this.p(1),
+            this.p(2),
+            this.p(3),
+            this.p(4),
+            this.p(5),
+        ]
+
+        label = "Fire using marching squares"
+        x = 200
+        y = 0
+        height = 81
+        zindex = 1
+        width = 210
+        blocksize = 6
+        burnfactor = 131
+        fuel = 15
+        c1 = "#fffEFF"
+        c2 = "#E2F2FF"
+        c3 = "#e220FF"
+        c4 = "#9b11FF"
+        c5 = "#0000FF"
+        l1 = 100
+        l2 = 64
+        l3 = 35
+        l4 = 22
+        l5 = 11
+        runsimulation = 1
+        useintensitymodulation = 0
+        dopaint = 1
+        optimize_onlysquares = false
+        optimize_rle_squares = true
+        optimize_removedoubles = false
+        optimize_batchfill = true
+        debug_drawmesh = false
+
+        initialize = function () {
             this.initValues();
-        },
+        }
 
-        initValues: function () {
+        initValues = function () {
             this.grid = [];
             this.burnoffset = 0;
             this.mytick = 60;
             this._boost = 0;
-        },
-
-        updateBurnOffset: function () {
+        }
+        //wtf is offset
+        updateBurnOffset = function () {
             this.mytick = ((this.mytick || 0) + 0.4) % 100;
             if (this.mytick > 85) {
-                this.burnoffset += Math.random() * 0.6;
+                this.burnoffset += Math.random() * 0.1;
             }
             if (this.mytick < 50) {
                 this.burnoffset *= 0.95;
             }
-        },
+        }
 
-        report: function () {
+        report = function () {
             const ret = _c.fmt(
                 "Fire {}, {}",
                 Math.round(this.maxIntensity * 100),
@@ -166,9 +113,9 @@
             this.maxIntensity = undefined;
             this.minIntensity = undefined;
             return ret;
-        },
+        }
 
-        paint: function (ctx) {
+        paint = function (ctx) {
             let i;
             let c;
             let g;
@@ -197,7 +144,7 @@
             if (this.optimize_removedoubles) {
                 this.erasePaintDoubles(grids);
             }
-
+            //podle poctu barev 
             for (i = 5; i > 0; i--) {
                 l = this[`l${i}`];
                 c = this[`c${i}`];
@@ -213,7 +160,8 @@
                         point = line[x];
                         if (point && point.length > 0) {
                             // RLE squares
-                            if (this.optimize_rle_squares) {
+                            //optimalizace, ani nevim ceho
+                            if (true) {
                                 if (point[0].fullsquare) {
                                     startx = x;
                                     width = 0;
@@ -242,73 +190,29 @@
                                     }
                                 }
                             }
+
                             if (this.optimize_onlysquares) {
                                 this.drawRect(ctx, x, y, 1, 1, this.optimize_batchfill);
                             } else {
-                                this.drawContour(ctx, point, x, y, this.optimize_batchfill);
+                                //vykresleni tamtech specialnich ctvercu
+                                // this.drawContour(ctx, point, x, y, this.optimize_batchfill);
+                                this.drawRect(ctx, x, y, 1, 1, this.optimize_batchfill);
                             }
                         }
                     }
                 }
-                if (this.optimize_batchfill) {
+                if (true) {
                     ctx.fill();
                 }
             }
+            //vykresleni meshu
             if (this.debug_drawmesh) {
                 this.drawMesh(ctx, grids[0][0].length, grids[0].length);
             }
             ctx.translate(-this.x, -this.y);
-        },
+        }
 
-        erasePaintDoubles: function (grids) {
-            let x;
-            let y;
-            let ymax = grids[0].length;
-            let xmax = grids[0][0].length;
-            let painted;
-            let cont;
-            let i;
-
-            for (y = 0; y < ymax; y++) {
-                for (x = 0; x < xmax; x++) {
-                    painted = false;
-                    for (i = 0; i < grids.length; i++) {
-                        if (painted) {
-                            grids[i][y][x] = null;
-                        } else {
-                            cont = grids[i][y][x];
-                            if (cont[0] && cont[0].fullsquare) {
-                                painted = true;
-                            }
-                        }
-                    }
-                }
-            }
-        },
-
-        drawMesh: function (ctx, width, height) {
-            let b = this.blocksize;
-            let y;
-            let x;
-
-            ctx.lineWidth = 0.5;
-            ctx.strokeStyle = "#888";
-            ctx.beginPath();
-
-            for (y = 0; y <= height; y++) {
-                ctx.moveTo(0, 0 + y * b);
-                ctx.lineTo(0 + width * b, 0 + y * b);
-                ctx.stroke();
-            }
-
-            for (x = 0; x <= width; x++) {
-                ctx.moveTo(x * b, 0);
-                ctx.lineTo(x * b, b * height);
-            }
-            ctx.stroke();
-        },
-
-        drawRect: function (ctx, x, y, width, height = 1, dontFill) {
+        drawRect = function (ctx, x, y, width, height = 1, dontFill) {
             let xoffset;
             let yoffset;
             let b = this.blocksize;
@@ -321,50 +225,17 @@
             if (!dontFill) {
                 ctx.fill();
             }
-        },
+        }
 
-        drawContour: function (ctx, cont, x, y, dontFill) {
-            let xoffset;
-            let yoffset;
-            let xx;
-            let yy;
-            let b = this.blocksize;
-            let j;
 
-            if (!dontFill) {
-                ctx.beginPath();
-            }
-            xoffset = b * x;
-            yoffset = b * y;
-            for (j = 0; j < cont.length; j++) {
-                xx = cont[j].x;
-                yy = cont[j].y;
-                if (j === 0) {
-                    ctx.moveTo(xoffset + xx * b, yoffset + yy * b);
-                } else {
-                    ctx.lineTo(xoffset + xx * b, yoffset + yy * b);
-                }
-            }
-            ctx.closePath();
-            if (!dontFill) {
-                ctx.fill();
-            }
-        },
-
-        boost: function () {
+        boost = function () {
             this._boost += 10;
-        },
+        }
 
-        /**
-         * This is where the actual simulation happens.
-         * Basically interates over a grid of cells with different heat or
-         * intensity. Each cell gets its intensity updated using its current value,
-         * the neighbours on the side and below it, and a random value.
-         *
-         * The bottom line of cells in the grid gets updated with a randomly
-         * initialized offline/offscreen line.
-         */
-        tick: function (ctx, diff) {
+
+        tick = function (ctx, diff) {
+            var ms;
+
             var x;
             var y;
             var lower;
@@ -377,7 +248,7 @@
                 100;
             var fuel = this.fuel / 100;
             var TICK_MS = 20;
-
+            // i dont fcking know what does this change
             if (!this.runsimulation) {
                 if (this.grid.length < this.height) {
                     this.grid = this.createGrid(this.height);
@@ -386,7 +257,7 @@
             }
 
             this.ms = (this.ms || 0) + diff;
-
+            //changing burn computation
             function processLine(lower, upper) {
                 var n;
                 var length = lower.length;
@@ -398,6 +269,7 @@
                     sum += (upper[n] || 0) + (upper[n + 1] || 0) + (upper[n + 2] || 0);
                     upper[x] = sum * 0.167 * burnfactor * (0.5 + Math.random() * 0.5);
                 }
+
             }
 
             if (this.grid.length < this.height) {
@@ -405,6 +277,7 @@
             }
 
             while (this.ms > TICK_MS) {
+
                 for (y = 0; y < this.grid.length - 1; y++) {
                     lower = this.grid[y + 1];
                     upper = this.grid[y];
@@ -415,19 +288,21 @@
                 for (x = 0; x < lastLine.length; x++) {
                     newLine.push(0.5 + Math.random() * fuel);
                 }
+
                 processLine(newLine, lastLine);
                 this.ms = this.ms - TICK_MS;
 
                 if (this.useintensitymodulation) {
                     this.updateBurnOffset();
                 }
+                //dont get it
                 if (this._boost > 0) {
                     this._boost -= 1;
                 }
             }
-        },
+        }
 
-        createGrid: function (height) {
+        createGrid = function (height) {
             let grid = [];
             let i;
 
@@ -443,25 +318,62 @@
                 grid.push(makeLine(this.width));
             }
             return grid;
-        },
+        }
 
-        onPropertyUpdate: function (name, value) {
+        onPropertyUpdate = function (name, value) {
             this[name] = value;
             if (name === "height" || name === "width") {
                 this.grid = [];
             }
-        },
-    });
-    }) ();
+        }
+    }
 
 
-    const canvas = document.getElementById('myCanvas');
-    const ctx = canvas.getContext("2d");
-    const maxRandomness = 3000;
-    const widhth = 300
-    const height = 700
+    frameloop = function (ctx, mainobj) {
+        let animate;
+        let lastTs = new Date();
+        let s = 0;
+        let pause;
+        let frames = 0;
 
-   
+     
+
+        animate = function () {
+            let curTs = new Date() - 0;
+            let diff = curTs - lastTs;
+            let report = "";
+            let logStr;
+            setTimeout(animate, pause ? WAITMS_PAUSE : WAITMS_RUN);
+            lastTs = curTs;
+            s = s + diff;
+            frames++;
+            if (s >= 1000) {
+                if (mainobj.report) {
+                    report = mainobj.report();
+                }
+                logStr = `FPS: ${frames}${report ? `, ${report}` : ""}`;
+                if (ctrl) {
+                    ctrl.showLog(logStr);
+                }
+                if (fpsfunc) {
+                    fpsfunc(frames);
+                }
+                s = 0;
+                frames = 0;
+            }
+
+            //vykreslení a výpočet
+            if (!pause) {
+                mainobj.tick(ctx, diff);
+            }
+            if (mainobj.draw) {
+                mainobj.draw(ctx);
+            }
+        };
+
+        animate();
+    };
+    frameloop(ctx,new Fire())
 
 </script>
 

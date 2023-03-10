@@ -44,7 +44,7 @@ export default {
 
   .panel {
     display: flex;
-    padding: 10px;
+    padding: 15px;
     border: 3px double $border1;
     flex-direction: column;
     background-color: darken($color1, 10);

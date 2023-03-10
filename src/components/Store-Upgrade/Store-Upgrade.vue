@@ -29,6 +29,7 @@ import Upgrade from './Upgrade.vue'
     height: 100vh;
     width: 100%;
     overflow: scroll;
+    padding: 2px;
 
     .title {
         @include pixel-borders ($corner-size: 2,

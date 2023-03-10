@@ -23,11 +23,12 @@ export default {
   width: 100%;
   height: 8vh;
   background-color: darken($color1, 10);
-  border: 1px solid $border1;
+  border: 1px dashed $border1;
+  
   align-items: center;
   &:active {
     scale: 0.9;
-    
+
   }
 }
 
