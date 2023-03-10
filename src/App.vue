@@ -18,31 +18,28 @@ export default {
 </script>
 
 <template>
-  <div class="wrapper">
-    <SnowEffect></SnowEffect>
-    <div class="left panel">
-      <InfoBox></InfoBox>
-      <Clicker></Clicker>
-      <TextOutput></TextOutput>
-    </div>
-    <FireCanvas></FireCanvas>
-    <div class="right panel">
-      <StoreUpgrade></StoreUpgrade>
-    </div>
+  <SnowEffect class="Snow"></SnowEffect>
+  <div class="left panel">
+    <InfoBox></InfoBox>
+    <Clicker></Clicker>
+    <TextOutput></TextOutput>
+  </div>
+  <FireCanvas></FireCanvas>
+  <div class="right panel">
+    <StoreUpgrade></StoreUpgrade>
   </div>
 </template>
 
-<style scoped lang="scss">
-.wrapper {
+<style  lang="scss">
+#app {
   display: flex;
   flex-direction: row;
   width: 100vw;
 
-  & > * {
-    flex: 1;
-  }
+   
 
   .panel {
+    flex: 1;
     display: flex;
     padding: 15px;
     border: 3px double $border1;
