@@ -1,10 +1,10 @@
 <script>
-import FireCanvas from "./components/Fire-Canvas/Fire-Canvas.vue";
+import FireCanvas from "./components/Fire-Canvas/index.vue";
 import Clicker from "./components/Clicker-Button.vue";
 import InfoBox from "./components/Info-Box.vue";
-import StoreUpgrade from "./components/Store-Upgrade/Store-Upgrade.vue";
+import StoreUpgrade from "./components/Store-Upgrade/index.vue";
 import TextOutput from "./components/TextOutput.vue";
-import SnowEffect from "./components/Snow-Effect/SnowEffect.vue";
+import SnowEffect from "./components/Snow-Effect/index.vue";
 export default {
   components: {
     FireCanvas,

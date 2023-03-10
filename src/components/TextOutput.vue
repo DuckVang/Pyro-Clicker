@@ -1,14 +1,20 @@
 <script setup>
 import { reactive } from "vue";
 const data = reactive({
-  messages: ["Hello pog", "World is shit", "This is isnt daijobu", "Is there something meaningfull", "A catgirl", "Test is a test"],
+  messages: [
+    "Hello pog",
+    "World is shit",
+    "This is isnt daijobu",
+    "Is there something meaningfull",
+    "A catgirl",
+    "Test is a test",
+  ],
 });
 </script>
 
 <template>
-
   <div class="Text-Box">
-  <h1>Text Output</h1>
+    <h1>Text Output</h1>
     <p v-for="(item, index) in data.messages" :key="index">
       {{ item }}
     </p>
@@ -16,7 +22,7 @@ const data = reactive({
 </template>
 
 <style lang="scss">
-h1{
+h1 {
   margin: 0;
 }
 .Text-Box {
