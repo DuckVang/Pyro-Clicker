@@ -6,7 +6,9 @@ let snowflakes = [];
 let browserWidth;
 let browserHeight;
 
-let numberOfSnowflakes = 300;
+let numberOfSnowflakes = 500;
+let acl = 400;
+let minAcl = 100
 
 let resetPosition = true;
 
@@ -55,7 +57,7 @@ function generateSnowflakes() {
     // set our snowflake's initial position and related properties
     let initialXPos = getPosition(50, browserWidth);
     let initialYPos = getPosition(50, browserHeight);
-    let speed = (5 + Math.random() * 40) * delta;
+    let speed = (minAcl  + Math.random() * acl) * delta;
 
     // create our Snowflake object
     let snowflakeObject = new Snowflake(snowflakeClone, speed, initialXPos, initialYPos);
