@@ -18,25 +18,26 @@ export default {
 </script>
 
 <template>
-  <SnowEffect class="Snow"></SnowEffect>
+  <SnowEffect class="Snow" />
+
   <div class="left panel">
-    <InfoBox></InfoBox>
-    <Clicker></Clicker>
-    <TextOutput></TextOutput>
+    <InfoBox />
+    <Clicker />
+    <TextOutput />
   </div>
-  <FireCanvas></FireCanvas>
+
+  <FireCanvas />
+
   <div class="right panel">
-    <StoreUpgrade></StoreUpgrade>
+    <StoreUpgrade />
   </div>
 </template>
 
-<style  lang="scss">
+<style lang="scss">
 #app {
   display: flex;
   flex-direction: row;
   width: 100vw;
-
-   
 
   .panel {
     flex: 1;
