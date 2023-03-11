@@ -1,19 +1,23 @@
 
+function p(n) {
+    return {
+        key: `l${n}`,
+        max: 100,
+        min: 0,
+    };
+}
+
+function c(n) {
+    return {
+        key: `c${n}`,
+        type: "color",
+    };
+}
+
 class Fire {
-    p(n) {
-        return {
-            key: `l${n}`,
-            max: 100,
-            min: 0,
-        };
-    }
 
-    c(n) {
-        return {
-            key: `c${n}`,
 
-        };
-    }
+
     properties = [
         c(1),
         c(2),
@@ -48,8 +52,8 @@ class Fire {
     l5 = 11
     runsimulation = 1
     useintensitymodulation = 0
-    dopaint =
-        optimize_onlysquares = false
+    dopaint = true
+    optimize_onlysquares = false
     optimize_rle_squares = true
     optimize_removedoubles = false
     optimize_batchfill = true
@@ -76,6 +80,16 @@ class Fire {
         }
     }
 
+    report = function () {
+        const ret = _c.fmt(
+            "Fire {}, {}",
+            Math.round(this.maxIntensity * 100),
+            Math.round(this.minIntensity * 100)
+        );
+        this.maxIntensity = undefined;
+        this.minIntensity = undefined;
+        return ret;
+    }
 
     paint = function (ctx) {
         let i;
@@ -95,11 +109,12 @@ class Fire {
         }
 
         ctx.translate(this.x, this.y);
+        //kazdej jednotlivej grid ma svoji barvu
 
-        for (i = 1; i <= 5; i++) {
+        for (i = 1; i <= 4; i++) {
             l = this[`l${i}`];
             grids.push(
-                CB.Marchingsquares.calculateAllWithInterpolation(this.grid, l / 100)
+                Marching_squares.calculateAllWithInterpolation(this.grid, l / 100)
             );
         }
 
@@ -107,7 +122,7 @@ class Fire {
             this.erasePaintDoubles(grids);
         }
         //podle poctu barev 
-        for (i = 5; i > 0; i--) {
+        for (i = 4; i > 0; i--) {
             l = this[`l${i}`];
             c = this[`c${i}`];
             ctx.fillStyle = c;
@@ -279,10 +294,4 @@ class Fire {
         return grid;
     }
 
-    onPropertyUpdate = function (name, value) {
-        this[name] = value;
-        if (name === "height" || name === "width") {
-            this.grid = [];
-        }
-    }
 }
