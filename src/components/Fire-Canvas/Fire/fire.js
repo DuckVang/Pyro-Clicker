@@ -1,19 +1,25 @@
 
-class Fire {
-    p(n) {
-        return {
-            key: `l${n}`,
-            max: 100,
-            min: 0,
-        };
-    }
+import MarchingSquares from "./marchingsquares";
 
-    c(n) {
-        return {
-            key: `c${n}`,
+function p(n) {
+    return {
+        key: `l${n}`,
+        max: 100,
+        min: 0,
+    };
+}
 
-        };
-    }
+function c(n) {
+    return {
+        key: `c${n}`,
+        type: "color",
+    };
+}
+
+export default class Fire {
+
+
+
     properties = [
         c(1),
         c(2),
@@ -30,17 +36,20 @@ class Fire {
     label = "Fire using marching squares"
     x = 200
     y = 0
+
     height = 81
     zindex = 1
     width = 210
     blocksize = 6
     burnfactor = 131
     fuel = 15
+
     c1 = "#fffEFF"
     c2 = "#E2F2FF"
     c3 = "#e220FF"
     c4 = "#9b11FF"
     c5 = "#0000FF"
+
     l1 = 100
     l2 = 64
     l3 = 35
@@ -48,23 +57,21 @@ class Fire {
     l5 = 11
     runsimulation = 1
     useintensitymodulation = 0
-    dopaint =
-        optimize_onlysquares = false
+    dopaint = true
+    optimize_onlysquares = false
     optimize_rle_squares = true
     optimize_removedoubles = false
     optimize_batchfill = true
     debug_drawmesh = false
 
     constructor() {
-        this.initValues();
-    }
-
-    initValues = function () {
         this.grid = [];
         this.burnoffset = 0;
         this.mytick = 60;
         this._boost = 0;
     }
+
+  
     //wtf is offset
     updateBurnOffset = function () {
         this.mytick = ((this.mytick || 0) + 0.4) % 100;
@@ -76,6 +83,7 @@ class Fire {
         }
     }
 
+ 
 
     paint = function (ctx) {
         let i;
@@ -95,11 +103,12 @@ class Fire {
         }
 
         ctx.translate(this.x, this.y);
+        //kazdej jednotlivej grid ma svoji barvu
 
-        for (i = 1; i <= 5; i++) {
+        for (i = 1; i <= 4; i++) {
             l = this[`l${i}`];
             grids.push(
-                CB.Marchingsquares.calculateAllWithInterpolation(this.grid, l / 100)
+                MarchingSquares.calculateAllWithInterpolation(this.grid, l / 100)
             );
         }
 
@@ -107,7 +116,7 @@ class Fire {
             this.erasePaintDoubles(grids);
         }
         //podle poctu barev 
-        for (i = 5; i > 0; i--) {
+        for (i = 4; i > 0; i--) {
             l = this[`l${i}`];
             c = this[`c${i}`];
             ctx.fillStyle = c;
@@ -279,10 +288,4 @@ class Fire {
         return grid;
     }
 
-    onPropertyUpdate = function (name, value) {
-        this[name] = value;
-        if (name === "height" || name === "width") {
-            this.grid = [];
-        }
-    }
 }

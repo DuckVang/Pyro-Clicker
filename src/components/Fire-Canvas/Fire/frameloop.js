@@ -3,7 +3,7 @@
 const WAITMS_RUN = 1000 / 60;
 const WAITMS_PAUSE = 200;
 
-class FrameLoop {
+export default class FrameLoop {
   ctx
   mainobj
 
