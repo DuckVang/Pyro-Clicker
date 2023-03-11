@@ -1,36 +1,29 @@
-<script >
+<script setup>
 import { Application, Graphics } from "pixi.js";
 import start from "./Fire/firesimulation.js";
+import { reactive, onMounted } from "vue";
 
-let pixiApp = new Application({ autoResize: true });
+const data = reactive({
+  pixiApp: new Application({ autoResize: true }),
+});
 
-pixiApp.stage.addChild(
-  new Graphics().beginFill(0x00e200).drawRect(0, 0, 100, 100).endFill()
+data.pixiApp.stage.addChild(
+  new Graphics().beginFill(0x00eEE0).drawRect(0, 0, 100, 100).endFill()
 );
 
-export default {
-  data() {
-    return {
-      pixiApp: pixiApp,
-    };
-  },
-  mounted() {
-    this.$el.appendChild(this.pixiApp.view);
-    console.log(this.$el);
+onMounted(() => {
+  document.querySelector("#Pixi-App").appendChild(data.pixiApp.view);
 
-    window.addEventListener("resize", this.resize);
-    this.resize();
-    console.log(this.$el);
-  },
-  methods: {
-    resize() {
-      const parent = this.pixiApp.view.parentNode;
-      console.log(parent);
-      console.log(parent.clientWidth, parent.clientHeight);
-      pixiApp.renderer.resize(parent.clientWidth, window.innerHeight);
-    },
-  },
-};
+  window.addEventListener("resize", resize);
+  resize();
+});
+
+function resize() {
+  const parent = data.pixiApp.view.parentNode;
+  console.log(parent);
+  console.log(parent.clientWidth, parent.clientHeight);
+  data.pixiApp.renderer.resize(parent.clientWidth, window.innerHeight);
+}
 </script>
 <template>
   <div id="Pixi-App"></div>
