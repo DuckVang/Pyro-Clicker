@@ -29,27 +29,29 @@ button {
 
   &:active {
     .container {
+      
       img {
-        animation-name: click;
-        animation-direction: normal;
-        animation-duration: 10s;
+        scale: 1.2  ;
+        // animation-name: click;
+        // animation-direction: normal;
+        // animation-duration: 10s;
 
-        @keyframes click {
-          0% {
-            translate: 0, 40px;
-          }
-          50% {
-            translate: 100% -40px;
-            transition: 0.2s;
-            rotate: (10deg);
-            scale: 0.5;
-          }
+        // @keyframes click {
+        //   0% {
+        //     translate: 0, 40px;
+        //   }
+        //   50% {
+        //     translate: 100% -40px;
+        //     transition: 0.2s;
+        //     rotate: (10deg);
+        //     scale: 0.5;
+        //   }
 
-          100% {
-            position: 0px 0px;
-            scale: 0.5;
-          }
-        }
+        //   100% {
+        //     position: 0px 0px;
+        //     scale: 0.5;
+        //   }
+        // }
       }
     }
   }
