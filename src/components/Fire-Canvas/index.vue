@@ -38,6 +38,8 @@ function resize() {
   height: 100vh;
 
   background-color: black;
+  border-bottom: double 3px $border1;
+  border-top: double 3px $border1;
 
   & > canvas {
     margin: 0;
