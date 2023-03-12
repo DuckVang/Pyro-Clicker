@@ -31,7 +31,7 @@ h1 {
   background-color: $color1;
   border: 1px dashed $border1;
   padding: 10px;
-  overflow: scroll;
+  
   & > * {
     margin: 0;
   }
