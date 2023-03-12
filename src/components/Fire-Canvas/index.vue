@@ -7,9 +7,10 @@ const data = reactive({
   pixiApp: new Application({ autoResize: true }),
 });
 
-data.pixiApp.stage.addChild(
-  new Graphics().beginFill(0x00eEE0).drawRect(0, 0, 100, 100).endFill()
-);
+const graphics = new Graphics();
+data.pixiApp.stage.addChild(graphics);
+
+start(graphics, data.pixiApp.renderer);
 
 onMounted(() => {
   document.querySelector("#Pixi-App").appendChild(data.pixiApp.view);

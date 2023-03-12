@@ -1,6 +1,6 @@
 
 import MarchingSquares from "./marchingsquares";
-
+import { Graphics, utils } from "pixi.js";
 function p(n) {
     return {
         key: `l${n}`,
@@ -34,12 +34,12 @@ export default class Fire {
     ]
 
     label = "Fire using marching squares"
-    x = 200
-    y = 0
+    x = -100
+    y = -200
 
-    height = 81
+    height = 100
     zindex = 1
-    width = 210
+    width = 100
     blocksize = 6
     burnfactor = 131
     fuel = 15
@@ -64,14 +64,20 @@ export default class Fire {
     optimize_batchfill = true
     debug_drawmesh = false
 
-    constructor() {
+    constructor(width,height) {
         this.grid = [];
         this.burnoffset = 0;
         this.mytick = 60;
         this._boost = 0;
+
+        //  this.width = width
+        // this.height = height
+    
+        
     }
 
-  
+
+
     //wtf is offset
     updateBurnOffset = function () {
         this.mytick = ((this.mytick || 0) + 0.4) % 100;
@@ -83,7 +89,7 @@ export default class Fire {
         }
     }
 
- 
+
 
     paint = function (ctx) {
         let i;
@@ -102,7 +108,9 @@ export default class Fire {
             return;
         }
 
-        ctx.translate(this.x, this.y);
+        // ctx.translate(this.x, this.y);
+        ctx.x = this.x;
+        ctx.y = this.y;
         //kazdej jednotlivej grid ma svoji barvu
 
         for (i = 1; i <= 4; i++) {
@@ -119,10 +127,11 @@ export default class Fire {
         for (i = 4; i > 0; i--) {
             l = this[`l${i}`];
             c = this[`c${i}`];
-            ctx.fillStyle = c;
-            if (this.optimize_batchfill) {
-                ctx.beginPath();
-            }
+
+            // ctx.fillStyle = c;
+            // if (this.optimize_batchfill) {
+            //     ctx.beginFill(c);
+            // }
             g = grids[i - 1];
 
             for (y = 0; y < g.length; y++) {
@@ -149,53 +158,56 @@ export default class Fire {
                                     if (startx + width >= line.length) {
                                         width = line.length - startx - 1;
                                     }
-                                    this.drawRect(
-                                        ctx,
-                                        startx,
-                                        y,
-                                        width + 1,
-                                        1,
-                                        this.optimize_batchfill
-                                    );
+                                    this.drawRect(ctx, startx, y, width + 1, 1, this.optimize_batchfill, c);
                                     continue;
                                 }
                             }
                         }
 
                         if (this.optimize_onlysquares) {
-                            this.drawRect(ctx, x, y, 1, 1, this.optimize_batchfill);
+                            this.drawRect(ctx, x, y, 1, 1, this.optimize_batchfill, c);
                         } else {
                             //vykresleni tamtech specialnich ctvercu
                             // this.drawContour(ctx, point, x, y, this.optimize_batchfill);
-                            this.drawRect(ctx, x, y, 1, 1, this.optimize_batchfill);
+                            this.drawRect(ctx, x, y, 1, 1, this.optimize_batchfill, c);
                         }
                     }
                 }
             }
-            if (true) {
-                ctx.fill();
-            }
+            // if (true) {
+            //     // ctx.fill();
+            // }
         }
         //vykresleni meshu
         if (this.debug_drawmesh) {
             this.drawMesh(ctx, grids[0][0].length, grids[0].length);
         }
-        ctx.translate(-this.x, -this.y);
+        // ctx.translate(-this.x, -this.y);
+        ctx.x = -this.x;
+        ctx.y = -this.y;
     }
 
-    drawRect = function (ctx, x, y, width, height = 1, dontFill) {
+    drawRect = function (ctx, x, y, width, height = 1, dontFill, color) {
         let xoffset;
         let yoffset;
         let b = this.blocksize;
         xoffset = b * x;
         yoffset = b * y;
-        if (!dontFill) {
-            ctx.beginPath();
-        }
-        ctx.rect(xoffset, yoffset, width * b, height * b);
-        if (!dontFill) {
-            ctx.fill();
-        }
+        // if (!dontFill) {
+        //     ctx.beginPath();
+        // }
+        const colorString = color;
+        const colorNumber = parseInt(colorString.slice(1), 16);
+
+        ctx.beginFill(colorNumber);
+        ctx.drawRect(xoffset, yoffset, width * b, height * b);
+
+        ctx.endFill()
+
+
+        // if (!dontFill) {
+        //     ctx.fill();
+        // }
     }
 
 

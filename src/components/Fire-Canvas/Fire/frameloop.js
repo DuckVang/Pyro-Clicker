@@ -31,7 +31,7 @@ export default class FrameLoop {
     this.frames++;
 
     //vykreslení a výpočet
-    this.ctx.clearRect(0, 0, 1000, 1000);
+    this.ctx.clear()
     this.mainobj.tick(this.ctx, diff);
 
 

@@ -32,11 +32,11 @@ class Fire {
     ]
 
     label = "Fire using marching squares"
-    x = 200
-    y = 0
-    height = 81
+    x = 1
+    y = 100
+    height = 100
     zindex = 1
-    width = 210
+    width = 20
     blocksize = 6
     burnfactor = 131
     fuel = 15
@@ -53,7 +53,7 @@ class Fire {
     runsimulation = 1
     useintensitymodulation = 0
     dopaint = true
-    optimize_onlysquares = false
+    optimize_onlysquares = true
     optimize_rle_squares = true
     optimize_removedoubles = false
     optimize_batchfill = true
@@ -111,7 +111,7 @@ class Fire {
         ctx.translate(this.x, this.y);
         //kazdej jednotlivej grid ma svoji barvu
 
-        for (i = 1; i <= 4; i++) {
+        for (i = 1; i <= 5; i++) {
             l = this[`l${i}`];
             grids.push(
                 Marching_squares.calculateAllWithInterpolation(this.grid, l / 100)
@@ -122,7 +122,7 @@ class Fire {
             this.erasePaintDoubles(grids);
         }
         //podle poctu barev 
-        for (i = 4; i > 0; i--) {
+        for (i = 5; i > 0; i--) {
             l = this[`l${i}`];
             c = this[`c${i}`];
             ctx.fillStyle = c;
