@@ -34,6 +34,13 @@ export default {
 </template>
 
 <style lang="scss">
+@font-face {
+  font-family: "VT323";
+  src: local("VT323"), url(../font/VT323/VT323-Regular.ttf);
+}
+:root{
+  font-family: "VT323";
+}
 #app {
   display: flex;
   flex-direction: row;

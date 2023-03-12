@@ -1,11 +1,14 @@
-<script>
-export default {};
+<script setup>
+
+
+import logImg from "../assets/log.png";
+
 </script>
 <template>
   <div class="clicker">
     <button>
       <div class="container">
-        <img src="../assets/log.png" alt="" />
+        <img :src="logImg" alt="" />
       </div>
     </button>
   </div>
