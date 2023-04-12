@@ -1,5 +1,8 @@
 <script setup>
+import { useStatStore } from "../stores/stat";
+
 const date = new Date("2100-03-25").toString();
+const store = useStatStore();
 </script>
 
 <template>
@@ -8,7 +11,7 @@ const date = new Date("2100-03-25").toString();
 
     <h4 class="date">{{ date }}</h4>
 
-    <h3 class="unit">XXX</h3>
+    <h3 class="unit">{{ store.count }}</h3>
   </div>
 </template>
 

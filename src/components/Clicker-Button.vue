@@ -1,12 +1,11 @@
 <script setup>
-
-
 import logImg from "../assets/log.png";
-
+import { useStatStore } from "../stores/stat";
+const store = useStatStore();
 </script>
 <template>
   <div class="clicker">
-    <button>
+    <button @click="store.increment">
       <div class="container">
         <img :src="logImg" alt="" />
       </div>
@@ -32,9 +31,8 @@ button {
 
   &:active {
     .container {
-      
       img {
-        scale: 1.2  ;
+        scale: 1.2;
         // animation-name: click;
         // animation-direction: normal;
         // animation-duration: 10s;

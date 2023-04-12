@@ -12,6 +12,7 @@
     "@fontsource/vt323": "^4.5.10",
     "@pixi/filter-ascii": "^5.1.1",
     "intellisense": "^0.0.1",
+    "pinia": "^2.0.34",
     "pixi.js": "^7.1.2",
     "vue": "^3.2.45"
   },
