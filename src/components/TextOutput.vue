@@ -29,7 +29,7 @@ h1 {
   width: 100%;
   max-height: 250px;
   background-color: $color1;
-  border: 1px dashed $border1;
+
   padding: 10px;
   
   & > * {
@@ -39,6 +39,7 @@ h1 {
 
   h1 {
     border-bottom: 1px solid $border1;
+    
   }
 
   h2 {
