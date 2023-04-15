@@ -47,14 +47,14 @@ export default {
   width: 100vw;
 
   .panel {
-    flex: 1;
+    flex: 0.5;
     display: flex;
     padding: 15px;
     border: 3px double $border1;
     flex-direction: column;
     background-color: darken($color1, 10);
     height: 100vh;
-    flex: 0.7;
+   
 
     &::before {
       z-index: -1;
