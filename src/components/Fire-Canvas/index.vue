@@ -1,29 +1,37 @@
 <script setup>
-import { Application, Graphics } from "pixi.js";
+import { Application, Graphics, Sprite, Texture } from "pixi.js";
 import start from "./Fire/firesimulation.js";
-import { reactive, onMounted } from "vue";
+import { reactive, onMounted, ref } from "vue";
+import Fire from "./Fire/fire";
+import iceAge from "../../assets/dark-forest.png";
 
-const data = reactive({
-  pixiApp: new Application({ autoResize: true }),
-});
+const pixiApp = ref(new Application({ autoResize: true }));
+
+const fire = ref(new Fire(pixiApp.value.renderer.width, pixiApp.value.renderer.height));
 
 const graphics = new Graphics();
-data.pixiApp.stage.addChild(graphics);
+pixiApp.value.stage.addChild(graphics);
 
-start(graphics, data.pixiApp.renderer);
+// const iceBackGround = new Sprite(Texture.from(iceAge));
+// iceBackGround.position.set(0,100)
+
+// iceBackGround.height = pixiApp.value.renderer.height
+// pixiApp.value.stage.addChild(iceBackGround);
+start(graphics, pixiApp.value.renderer, fire);
 
 onMounted(() => {
-  document.querySelector("#Pixi-App").appendChild(data.pixiApp.view);
+  document.querySelector("#Pixi-App").appendChild(pixiApp.value.view);
 
-  window.addEventListener("resize", resize);
+  window.addEventListener("resize", () => {
+    resize();
+  });
   resize();
 });
 
 function resize() {
-  const parent = data.pixiApp.view.parentNode;
-  console.log(parent);
-  console.log(parent.clientWidth, parent.clientHeight);
-  data.pixiApp.renderer.resize(parent.clientWidth, window.innerHeight);
+  const parent = pixiApp.value.view.parentNode;
+
+  pixiApp.value.renderer.resize(parent.clientWidth, window.innerHeight);
 }
 </script>
 <template>
@@ -32,7 +40,7 @@ function resize() {
 
 <style lang="scss">
 #Pixi-App {
-  flex: 2;
+  flex: 1;
   position: relative;
   overflow: hidden;
   height: 100vh;

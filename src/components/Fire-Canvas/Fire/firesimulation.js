@@ -1,21 +1,19 @@
-
-import Fire from "./Fire";
+import Fire from "./fire";
 import FrameLoop from "./FrameLoop";
 
-export default function start(graphic, renderer) {
-    console.log("start")
+export default function start(graphic, renderer, fire) {
+  console.log("start");
 
-    let canvas;
-    let ctx;
-    let world;
+  let ctx;
+  let world;
 
-    // canvas = document.getElementById(canvasId);
+  // canvas = document.getElementById(canvasId);
 
-    // ctx = canvas.getContext("2d");
-    ctx = graphic
+  // ctx = canvas.getContext("2d");
+  ctx = graphic;
 
-    world = new Fire(renderer.width, renderer.height);
+  world = new Fire(renderer.width, renderer.height);
+  //   world = fire;
 
-    new FrameLoop(ctx, world).animate()
+  new FrameLoop(ctx, world).animate();
 }
-

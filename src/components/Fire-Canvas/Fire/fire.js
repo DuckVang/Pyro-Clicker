@@ -19,12 +19,12 @@ export default class Fire {
   properties = [c(1), c(2), c(3), c(4), c(5), p(1), p(2), p(3), p(4), p(5)];
 
   label = "Fire using marching squares";
-  x = -100;
+  x = 0;
   y = -200;
 
   height = 100;
   zindex = 1;
-  width = 100;
+  width = 10;
   blocksize = 6;
   burnfactor = 131;
   fuel = 15;
@@ -56,6 +56,7 @@ export default class Fire {
     this._boost = 0;
     console.log(width, height);
 
+    this.x = -width / 16;
     this.width = width / 8;
     this.height = height / 6;
     console.log(this.width, this.height);
