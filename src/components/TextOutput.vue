@@ -2,12 +2,12 @@
 import { reactive } from "vue";
 const data = reactive({
   messages: [
-    "Hello pog",
-    "World is shit",
-    "This is isnt daijobu",
-    "Is there something meaningfull",
-    "A catgirl",
-    "Test is a test",
+    "So cold",
+    "Im hungry",
+    "Im not feeling well",
+    "This is the end",
+    "Im scared",
+    "...",
   ],
 });
 </script>
@@ -15,9 +15,10 @@ const data = reactive({
 <template>
   <div class="Text-Box">
     <h1>Text Output</h1>
-    <p v-for="(item, index) in data.messages" :key="index">
-      {{ item }}
-    </p>
+
+    <ul>
+      <li v-for="(item, index) in data.messages" :key="index">{{ item }}</li>
+    </ul>
   </div>
 </template>
 
@@ -31,15 +32,13 @@ h1 {
   background-color: $color1;
 
   padding: 10px;
-  
+
   & > * {
     margin: 0;
   }
-  
 
   h1 {
     border-bottom: 1px solid $border1;
-    
   }
 
   h2 {
@@ -47,6 +46,31 @@ h1 {
 
   .unit {
     font-size: 3em;
+  }
+  li {
+    animation: fadeIn 0.5s linear;
+    animation-fill-mode: both;
+    list-style-type: none;
+  }
+
+  @for $i from 1 through 7 {
+    li:nth-child(#{$i}) {
+      animation-delay: 0.5s + $i * 0.5;
+    }
+  }
+}
+@-webkit-keyframes fadeIn {
+  0% {
+    background-color: white;
+    opacity: 0;
+    top: 100px;
+  }
+  50% {
+    opacity: 0.5;
+    top: 0px;
+  }
+  100% {
+    opacity: 1;
   }
 }
 </style>
