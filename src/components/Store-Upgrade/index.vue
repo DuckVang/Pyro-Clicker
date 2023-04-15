@@ -2,11 +2,18 @@
 import Upgrade from "./Upgrade.vue";
 import gasolineImg from "../../assets/gasoline.png";
 import IUpgrade from "./IUpgrade";
+import axeImage  from "../../assets/axe.png"
+import { effect } from "vue";
 
 const Gasoline: IUpgrade = {
   name: "Gasoline",
   effect: "Amplify flame power",
-  price: 100,
+  price: 99,
+};
+const Axe: IUpgrade = {
+  name: "Axe",
+  effect: "More axe power",
+  price: 59,
 };
 </script>
 <template>
@@ -20,7 +27,7 @@ const Gasoline: IUpgrade = {
       </div>
     </div>
     <Upgrade :img="gasolineImg" :upgrade="Gasoline"> </Upgrade>
-    <Upgrade :img="gasolineImg"></Upgrade>
+    <Upgrade :img="axeImage" :upgrade="Axe"></Upgrade>
     <Upgrade :img="gasolineImg"></Upgrade>
     <Upgrade :img="gasolineImg" :is-locked="true"></Upgrade>
   </div>
@@ -36,7 +43,6 @@ const Gasoline: IUpgrade = {
   width: 100%;
   overflow: scroll;
 
-
   .title {
     align-items: left;
 
@@ -47,6 +53,7 @@ const Gasoline: IUpgrade = {
   }
   .categories {
     text-decoration: none;
+    z-index: 10;
     display: flex;
     gap: 5px;
     margin-top: 10px;
@@ -55,8 +62,9 @@ const Gasoline: IUpgrade = {
         text-decoration: unset;
       }
       &:hover {
-        transition: all 0.2s;
-        scale: 1.1;
+        transition: all 0.3s;
+        transform: translateY(-10%);
+        border-color: rgb(255, 255, 255);
       }
       color: white;
       font-size: large;
