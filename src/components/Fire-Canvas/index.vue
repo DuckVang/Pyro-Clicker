@@ -1,9 +1,8 @@
 <script setup>
-import { Application, Graphics, Sprite, Texture } from "pixi.js";
+import { Application, Graphics} from "pixi.js";
 import start from "./Fire/firesimulation.js";
-import { reactive, onMounted, ref } from "vue";
+import { onMounted, ref } from "vue";
 import Fire from "./Fire/fire";
-import iceAge from "../../assets/dark-forest.png";
 
 const pixiApp = ref(new Application({ autoResize: true }));
 

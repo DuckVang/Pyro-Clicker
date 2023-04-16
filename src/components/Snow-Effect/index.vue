@@ -1,6 +1,5 @@
 <script setup>
 import { useStatStore } from "../../stores/stat";
-import { watch } from "vue";
 import { storeToRefs } from "pinia";
 import snowConfig from "./config";
 import { loadFull } from "tsparticles";
@@ -44,8 +43,11 @@ const particlesLoaded = async (container) => {
           },
           value: snowFlakes,
         },
+
       },
+
     }"
+    
   />
 </template>
 <style lang="scss" scoped></style>

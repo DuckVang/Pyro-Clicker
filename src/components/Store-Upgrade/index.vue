@@ -3,7 +3,7 @@ import Upgrade from "./Upgrade.vue";
 import gasolineImg from "../../assets/gasoline.png";
 import IUpgrade from "./IUpgrade";
 import axeImage from "../../assets/axe.png";
-import { effect } from "vue";
+
 
 const Gasoline: IUpgrade = {
   name: "Gasoline",

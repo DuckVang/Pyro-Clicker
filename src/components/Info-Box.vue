@@ -46,8 +46,6 @@ const store = useStatStore();
     border-bottom: 1px solid $border1;
   }
 
-  h2 {
-  }
 
   .unit {
     font-size: 3em;
