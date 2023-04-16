@@ -1,10 +1,10 @@
 import { defineStore } from "pinia";
 
-import { ref } from "vue";
+import { Ref, ref } from "vue";
 import { useStorage } from "@vueuse/core";
 
 export const useStatStore = defineStore("counter", () => {
-  const count = useStorage("count", 0 as number);
+  const count: Ref<number> = useStorage("count", 0);
   const snowFlakes = ref(200);
   function increment() {
     count.value++;
