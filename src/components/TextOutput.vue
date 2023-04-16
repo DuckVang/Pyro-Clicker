@@ -48,14 +48,14 @@ h1 {
     font-size: 3em;
   }
   li {
-    animation: fadeIn 0.5s linear;
+    animation: fadeIn 0.51s cubic-bezier(.17,.67,.89,.32) both;
     animation-fill-mode: both;
     list-style-type: none;
   }
 
   @for $i from 1 through 7 {
     li:nth-child(#{$i}) {
-      animation-delay: 0.5s + $i * 0.5;
+      animation-delay: 6s + $i * 0.5;
     }
   }
 }

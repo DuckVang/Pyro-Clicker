@@ -19,6 +19,7 @@ pixiApp.value.stage.addChild(graphics);
 // pixiApp.value.stage.addChild(iceBackGround);
 start(graphics, pixiApp.value.renderer, fire);
 
+
 onMounted(() => {
   document.querySelector("#Pixi-App").appendChild(pixiApp.value.view);
 
@@ -52,6 +53,21 @@ function resize() {
   & > canvas {
     margin: 0;
     overflow: hidden;
+    animation: canvas 4s cubic-bezier(0.17, 0.67, 0.89, 0.32) both;
+   
+  }
+  @keyframes canvas {
+    0% {
+      background-color: white;
+      opacity: 2%;
+    }
+    50% {
+      opacity: 0.5;
+
+    }
+    100% {
+      opacity: 1;
+    }
   }
 }
 </style>

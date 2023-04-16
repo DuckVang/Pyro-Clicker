@@ -2,7 +2,7 @@
 import Upgrade from "./Upgrade.vue";
 import gasolineImg from "../../assets/gasoline.png";
 import IUpgrade from "./IUpgrade";
-import axeImage  from "../../assets/axe.png"
+import axeImage from "../../assets/axe.png";
 import { effect } from "vue";
 
 const Gasoline: IUpgrade = {
@@ -26,10 +26,12 @@ const Axe: IUpgrade = {
         <a href="" class="specials">special</a>
       </div>
     </div>
-    <Upgrade :img="gasolineImg" :upgrade="Gasoline"> </Upgrade>
-    <Upgrade :img="axeImage" :upgrade="Axe"></Upgrade>
-    <Upgrade :img="gasolineImg"></Upgrade>
-    <Upgrade :img="gasolineImg" :is-locked="true"></Upgrade>
+    <div class="upgrades">
+      <Upgrade :img="gasolineImg" :upgrade="Gasoline"> </Upgrade>
+      <Upgrade :img="axeImage" :upgrade="Axe"></Upgrade>
+      <Upgrade :img="gasolineImg"></Upgrade>
+      <Upgrade :img="gasolineImg" :is-locked="true"></Upgrade>
+    </div>
   </div>
 </template>
 <style scoped lang="scss">
@@ -71,6 +73,31 @@ const Axe: IUpgrade = {
       border: 1px solid grey;
       padding: 0 6px;
     }
+  }
+  .upgrades > .upgrade {
+    animation: fadeIn 0.5s cubic-bezier(0.17, 0.67, 0.89, 0.32) both;
+    animation-fill-mode: both;
+    list-style-type: none;
+  }
+
+  @for $i from 1 through 7 {
+    .upgrade:nth-child(#{$i}) {
+      animation-delay: 4s + $i * 0.5;
+    }
+  }
+}
+@keyframes fadeIn {
+  0% {
+    background-color: white;
+    opacity: 0;
+    top: 100px;
+  }
+  50% {
+    opacity: 0.5;
+    top: 0px;
+  }
+  100% {
+    opacity: 1;
   }
 }
 </style>
