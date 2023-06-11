@@ -1,9 +1,15 @@
 <script setup>
+import { set } from "@vueuse/core";
 import { useStatStore } from "../stores/stat";
 const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
 
 const date = new Date(Date.UTC(2100, 11, 12, 3, 0, 0)).toLocaleString(options);
 const store = useStatStore();
+
+setInterval(() => {
+  store.helpersIncrement(10);
+}, 100);
+
 </script>
 
 <template>
@@ -16,6 +22,8 @@ const store = useStatStore();
     </div>
 
     <h3>population: ???</h3>
+    <h3>helpers: {{ store.helpers }}</h3>
+    <h3>fire power: {{ store.firePower }}</h3>
 
     <h3 class="unit">{{ store.count }}</h3>
   </div>
@@ -36,7 +44,6 @@ const store = useStatStore();
     justify-content: space-between;
     font-size: 1.2rem;
     .temperature {
-      
       &::after {
         content: "°C";
       }
@@ -45,7 +52,6 @@ const store = useStatStore();
   h1 {
     border-bottom: 1px solid $border1;
   }
-
 
   .unit {
     font-size: 3em;

@@ -6,10 +6,16 @@ import StoreUpgrade from "./components/Store-Upgrade/index.vue";
 import TextOutput from "./components/TextOutput.vue";
 import SnowEffect from "./components/Snow-Effect/index.vue";
 import { useStatStore } from "./stores/stat";
+import { onMounted } from "vue";
+import audioFile from "../audio/campfire-1.mp3";
+onMounted(() => {
+  setTimeout(() => {
+    const audio = new Audio(audioFile);
+    audio.loop = true;
 
-setTimeout(() => {
-  useStatStore().setSnowFlakesAmount(100);
-}, 5000);
+    audio.play();
+  }, 5000);
+});
 </script>
 
 <template>

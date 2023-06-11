@@ -3,17 +3,20 @@ import Upgrade from "./Upgrade.vue";
 import gasolineImg from "../../assets/gasoline.png";
 import IUpgrade from "./IUpgrade";
 import axeImage from "../../assets/axe.png";
+import { ref } from "vue";
 
 
 const Gasoline: IUpgrade = {
+  type: "firePower",
   name: "Gasoline",
   effect: "Amplify flame power",
-  price: 99,
+  price: 69,
 };
 const Axe: IUpgrade = {
-  name: "Axe",
-  effect: "More axe power",
-  price: 59,
+  type: "helpers",
+  name: "Lumber",
+  effect: "More human workers",
+  price: 99,
 };
 </script>
 <template>
@@ -29,8 +32,7 @@ const Axe: IUpgrade = {
     <div class="upgrades">
       <Upgrade :img="gasolineImg" :upgrade="Gasoline"> </Upgrade>
       <Upgrade :img="axeImage" :upgrade="Axe"></Upgrade>
-      <Upgrade :img="gasolineImg"></Upgrade>
-      <Upgrade :img="gasolineImg" :is-locked="true"></Upgrade>
+
     </div>
   </div>
 </template>
@@ -82,7 +84,7 @@ const Axe: IUpgrade = {
 
   @for $i from 1 through 7 {
     .upgrade:nth-child(#{$i}) {
-      animation-delay: 4s + $i * 0.5;
+      animation-delay: 1s + $i * 0.5;
     }
   }
 }

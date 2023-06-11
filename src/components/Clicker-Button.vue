@@ -2,10 +2,17 @@
 import logImg from "../assets/log.png";
 import { useStatStore } from "../stores/stat";
 const store = useStatStore();
+
+function handleClick() {
+  const audio = new Audio("../audio/click.mp3");
+  audio.play();
+
+  store.increment();
+}
 </script>
 <template>
   <div class="clicker">
-    <button @click="store.increment">
+    <button @click="handleClick">
       <div class="container">
         <img :src="logImg" alt="" />
       </div>
