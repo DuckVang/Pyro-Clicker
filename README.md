@@ -1,2 +1,2 @@
 # Pyro-Clicker
-Clicker game 
+![Screenshot](image.png)
